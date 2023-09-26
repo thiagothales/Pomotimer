@@ -21,7 +21,7 @@ def pomotime(timee):
         time.sleep(1)
         countdown -=1
         
-    for cycles in range(0,4):
+    for _ in range(0,4):
         
         notification.notify(
                 title = "Pomotimer",
@@ -71,6 +71,17 @@ def pomotime(timee):
         print(time.strftime("Pomodoro completed [%A - %d %B, %H:%M]")) 
 
             
+def error_handling():
+    try:
+        timee = int(input('Insert your focus time in minutes: '))
+        check_value = isinstance(timee,int)
+        if check_value == True:
+            pomotime(int(timee))
 
-timee = input('Insert your focus time in minutes: ')
-pomotime(int(timee))
+    except ValueError:
+        print("\nIncorrect value type, insert a integer type value.\n")
+        error_handling()
+    except KeyboardInterrupt:
+        print("\nYou has pressed Ctrl + C, the program was interrupt!\n")
+        
+error_handling()
